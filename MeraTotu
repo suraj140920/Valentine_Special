@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Important Life Test 💖</title>
+
+<style>
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #333;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 350px;
+  text-align: center;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.yes {
+  background: #4CAF50;
+  color: white;
+}
+
+.no {
+  background: #f44336;
+  color: white;
+  position: absolute;
+}
+
+.popup {
+  display: none;
+  background: black;
+  color: red;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="quiz">
+  <h2>Will you be my Valentine? 💘</h2>
+  <button class="yes" onclick="yesClicked()">Yes ❤️</button>
+  <button class="no" id="noBtn">No 💔</button>
+
+  <div class="popup" id="popup">
+    ❌ Invalid choice.<br>
+    System detected you are already my Valentine 😌💖
+  </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const popup = document.getElementById("popup");
+
+let attempts = 0;
+
+noBtn.addEventListener("mouseover", () => {
+  attempts++;
+
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 100);
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+
+  noBtn.style.transform = `scale(${1 - attempts * 0.1})`;
+
+  if (attempts >= 3) {
+    popup.style.display = "block";
+    setTimeout(yesClicked, 2000);
+  }
+});
+
+function yesClicked() {
+  document.body.innerHTML = `
+    <div class="card">
+      <h2>🎉 Yay! You're My Valentine! 🎉</h2>
+      <p>Thank you for making my day special ❤️</p>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
